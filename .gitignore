@@ -1,0 +1,45 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+web_archiver/
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment variables (CRITICAL: Never upload these)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# Editor-specific folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Testing
+coverage/
+.nyc_output
+
+# Documentation/Images (Optional: ignore if you have large raw assets)
+# uploads/
+# public/temp/

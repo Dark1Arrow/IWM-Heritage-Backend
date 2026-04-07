@@ -1,0 +1,96 @@
+// AUTH , IS STUDENT , IS INSTRUCTOR , IS ADMIN
+
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+// ================ AUTH ================
+// user Authentication by checking token validating
+const auth = (req, res, next) => {
+    try {
+        // extract token by anyone from this 3 ways
+        const token = req.body?.token || req.cookies?.token || req.header('Authorization')?.replace('Bearer ', '');
+
+        // if token is missing
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: 'Token is Missing'
+            });
+        }
+
+        try {
+            const decode = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decode;
+        }
+        catch (error) {
+            console.log('Error while decoding token');
+            console.log(error);
+            return res.status(401).json({
+                success: false,
+                error: error.message,
+                messgae: 'Error while decoding token'
+            })
+        }
+        // go to next middleware
+        next();
+    }
+    catch (error) {
+        console.log('Error while token validating');
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            messgae: 'Error while token validating'
+        })
+    }
+}
+
+// ================ IS USER ================
+const isUser = (req, res, next) => {
+    try {
+        // console.log('User data -> ', req.user)
+        if (req.user?.accountType != 'User') {
+            return res.status(401).json({
+                success: false,
+                messgae: 'This Page is protected only for User'
+            })
+        }
+        // go to next middleware
+        next();
+    }
+    catch (error) {
+        console.log('Error while cheching user validity with User accountType');
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+            messgae: 'Error while cheching user validity with User accountType'
+        })
+    }
+}
+
+
+// ================ IS ADMIN ================
+const isAdmin = (req, res, next) => {
+    try {
+        // console.log('User data -> ', req.user)
+        if (req.user.accountType != 'Admin') {
+            return res.status(401).json({
+                success: false,
+                messgae: 'This Page is protected only for Admin'
+            })
+        }
+        // go to next middleware
+        next();
+    }
+    catch (error) {
+        console.log('Error while cheching user validity with Admin accountType');
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            error: error.message,
+            messgae: 'Error while cheching user validity with Admin accountType'
+        })
+    }
+}
+
+export {auth , isAdmin , isUser}
