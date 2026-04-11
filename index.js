@@ -15,7 +15,8 @@ import {cloudinaryConnect} from "./config/cloudindary.js"
 import userRoutes from "./router/user.js"
 import profileRouter from "./router/profile.js"
 import HeritageRouter from './router/heritage.js';
-
+import SavedRouter from "./router/saved.js"
+import ReviewRouter from "./router/review.js"
 
 // middleware 
 app.use(express.json()); // to parse json body
@@ -50,6 +51,8 @@ cloudinaryConnect();
 app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/profile', profileRouter)
 app.use('/api/v1/heritage', HeritageRouter)
+app.use('/api/v1/saved', SavedRouter)
+app.use('/api/v1/review', ReviewRouter)
 
 
 // Default Route
