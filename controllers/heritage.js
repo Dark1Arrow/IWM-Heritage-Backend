@@ -20,6 +20,7 @@ const createHeritage = async (req, res) => {
             timeline: _timeline,
             architecture: _architecture,
             significance: _significance,
+            story: _story,
             visitInfo: _visitInfo,
             contact: _contact,
             experiences: _experiences,
@@ -34,6 +35,7 @@ const createHeritage = async (req, res) => {
         const timeline = parse(_timeline);
         const architecture = parse(_architecture);
         const significance = parse(_significance);
+        const story = parse(_story);
         const visitInfo = parse(_visitInfo);
         const contact = parse(_contact);
         const experiences = parse(_experiences);
@@ -95,6 +97,7 @@ const createHeritage = async (req, res) => {
             timeline,
             architecture,
             significance,
+            story,
             visitInfo,
             contact,
             experiences,
@@ -249,6 +252,7 @@ const editHeritage = async (req, res) => {
         if (updates.location) heritage.location = JSON.parse(updates.location);
         if (updates.about) heritage.about = JSON.parse(updates.about);
         if (updates.significance) heritage.significance = JSON.parse(updates.significance);
+        if (updates.story) heritage.story = JSON.parse(updates.story);
         if (updates.visitInfo) heritage.visitInfo = JSON.parse(updates.visitInfo);
         if (updates.timeline) heritage.timeline = JSON.parse(updates.timeline);
         if (updates.contact) heritage.contact = JSON.parse(updates.contact);

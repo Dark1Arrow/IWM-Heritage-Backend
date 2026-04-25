@@ -76,6 +76,10 @@ const HeritageSiteSchema = new mongoose.Schema({
         description: String,
         points: [String] // Bullet points from the UI
     },
+    story: {
+        description: String,
+        points: [String] // Bullet points from the UI
+    },
 
     // --- Plan Your Visit (Dynamic sidebar data) ---
     visitInfo: {
