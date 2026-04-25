@@ -67,6 +67,9 @@ const signup = async (req, res) => {
         const { firstName, lastName, email, password,
             accountType, otp } = req.body;
 
+            console.log(firstName, lastName, email, password,
+            accountType, otp)
+
         // validation
         if (!firstName || !lastName || !email || !password  || !accountType || !otp) {
             return res.status(401).json({
