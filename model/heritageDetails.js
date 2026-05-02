@@ -22,7 +22,7 @@ const HeritageSiteSchema = new mongoose.Schema({
 
     heritageType: {
         type: String,
-        enum: ['Religious', 'Architectural', 'Commercial', 'Natural', 'Memorial','Museums','Memrorial','Food','Markets'],
+        enum: ['Religious', 'Architectural', 'Commercial', 'Natural', 'Memorial', 'Museums', 'Memrorial', 'Food', 'Markets'],
         required: true
     },
 
@@ -67,8 +67,8 @@ const HeritageSiteSchema = new mongoose.Schema({
             details: String
         }] // The decorative image at the bottom of the section
     },
-    archFooterImage:{
-        type : String
+    archFooterImage: {
+        type: String
     },
 
     // --- Cultural Significance ---
@@ -117,7 +117,14 @@ const HeritageSiteSchema = new mongoose.Schema({
     }],
 
     // --- Gallery Section ---
-    gallery: [String] // Array of image URLs for the slider
+    gallery: [
+        {
+            type: String,
+            unique: true, // No other document can have this exact title in its gallery
+            sparse: true, // Ensures null values don't trigger duplicate errors
+            trim: true
+        }
+    ]// Array of image URLs for the slider
 
 }, {
     timestamps: true // Automatically adds createdAt and updatedAt
