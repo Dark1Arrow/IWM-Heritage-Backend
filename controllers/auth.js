@@ -1,5 +1,5 @@
 import User from "../model/user.js"
-import Profile from "../model/Profile.js"
+import Profile from "../model/profile.js"
 import optGenerator from "otp-generator"
 import {OTP} from "../model/OTP.js"
 import bcrypt from "bcryptjs"
