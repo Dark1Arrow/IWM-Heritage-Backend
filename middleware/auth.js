@@ -28,7 +28,7 @@ const auth = (req, res, next) => {
             return res.status(401).json({
                 success: false,
                 error: error.message,
-                messgae: 'Error while decoding token'
+                message: 'Error while decoding token'
             })
         }
         // go to next middleware

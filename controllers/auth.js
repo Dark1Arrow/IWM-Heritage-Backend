@@ -64,14 +64,12 @@ const sendOTP = async (req, res) => {
 const signup = async (req, res) => {
     try {
         // extract data 
-        const { firstName, lastName, email, password,
-            accountType, otp } = req.body;
+        const { firstName, lastName, email, password, otp } = req.body;
 
-            console.log(firstName, lastName, email, password,
-            accountType, otp)
+            console.log(firstName, lastName, email, password, otp)
 
         // validation
-        if (!firstName || !lastName || !email || !password  || !accountType || !otp) {
+        if (!firstName || !lastName || !email || !password  || !otp) {
             return res.status(401).json({
                 success: false,
                 message: 'All fields are required..!'
@@ -128,7 +126,7 @@ const signup = async (req, res) => {
         // create entry in DB
         const userData = await User.create({
             firstName, lastName, email, password: hashedPassword,
-            accountType: accountType, additionalDetails: profileDetails._id,
+            accountType: "User", additionalDetails: profileDetails._id,
             approved: approved,
             image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`
         });

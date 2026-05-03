@@ -125,7 +125,7 @@ const getAllHeritage = async (req, res) => {
     try {
         // Fetching all documents from the collection
         const heritages = await HeritageDetails.find({})
-            .select("name mainImage heritageType tagline era lat lng location visitInfo")
+            .select("name mainImage heritageType tagline era lat lng location visitInfo about")
             .lean();
 
         // Check if data exists
